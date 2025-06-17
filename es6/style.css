@@ -13,6 +13,25 @@ body, body > * {
   padding: 20px;
 }
 
+.container ol li:not(:first-of-type) {
+  margin-top: 8px;
+}
+
+.container ol > li > ul {
+  margin-top: 8px;
+}
+
+/* .container ol > li > ul li{ d} */
+
 .container .learning {
   margin-top: 40px;
+}
+
+.container .think {
+  margin-top: 20px;
+}
+
+.container .history-back {
+  display: block;
+  margin-top: 80px;
 }

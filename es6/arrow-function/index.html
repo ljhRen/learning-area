@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Arrow function | JS</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <div class="sub-area">
+    <div class="container">
+      <h2>Arrow function 개념 복습</h2>
+      <p>코드 내, 주석/콘솔 확인</p>
+      <ol>
+        <li>
+          함수 본연의 기능을 아주 잘 표현하는 문법.
+          <ul>
+            <li>여러가지 기능을 하는 코드를 한 단어로 묶고 싶을 때 (그리고 나중에 재사용할 때)</li>
+            <li>입출력기능을 만들 때</li>
+          </ul>
+        </li>
+        <li>
+          소괄호 생략이 가능
+          <ul>
+            <li>
+              let multiply = x => { return x * 2 } <br>
+              <i>단, 파라미터가 1개일 경우</i>
+            </li>
+            <li>multiply(2) => 4 출력</li>
+            <li>multiply(4) = > 8 출력</li>
+          </ul>
+        </li>
+        <li>
+          중괄호 생략이 가능
+          <ul>
+            <li>
+              let multiply = x => return x * 2 <br>
+              <i>중괄호 안에 return이 한 줄 뿐인 경우, 중괄호와 return 생략 가능</i> <br>
+              <strong>개인적으론 중괄호 생략 시에 세미콜론 적는 걸 선호</strong>
+            </li>
+            <li>multiply(2) => 4 출력</li>
+            <li>multiply(4) = > 8 출력</li>
+          </ul>
+        </li>
+      </ol>
+      <p class="think">
+        평소에 간편해서 자주 사용했던 화살표 함수. <br>
+        this에 바인딩할 객체가 정적으로 결정되는 부분을 항시 유의하며 사용하자.
+      </p>
+      <div class="learning affow-function">
+        <h3>예제 테스트</h3>
+        <button type="button" id="arrow">버튼입니다</button>
+      </div>
+
+      <a class="history-back" href="../index.html">ES6 메인 리스트로</a>
+    </div>  
+  </div>
+</body>
+<script type="text/javascript">
+  /* *** this & arrow function 연습문제 ***  */
+
+
+
+  /*
+  연습 문제 01 - 간단한 메소드 만들기
+  Q. sayHi()라는 함수를 어디서 어떻게 만들면 될까요? 
+
+  var 사람 = {
+    name: '아무개',
+  } 
+  사람.sayHi(); // 콘솔창에 '안녕 나는 아무개'
+
+  */
+
+  // 아래 상황에서 this를 사용하려면, 화살표 함수를 사용하지 않는다.
+  var 사람 = {
+    name: '아무개',
+    sayHi: function() {
+      console.log(`안녕 나는 ${this.name}`);
+      // console.log('안녕 나는 ' + this.name); // 템플릿 리터럴 사용 안 할 경우
+    },
+  }
+
+  // 화살표 함수를 사용하려면, 아래와 같이 작성하면 될 것 같다.
+  // var 사람 = {
+  //   name: '아무개',
+  //   sayHi: () => {
+  //     console.log(`안녕 나는 ${사람.name}`);
+  //     // console.log('안녕 나는 ' + 사람.name); // 템플릿 리터럴 사용 안 할 경우
+  //   },
+  // }
+  
+  사람.sayHi();
+  
+
+
+  /*
+  연습 문제 02 - 오브젝트 내의 데이터를 전부 더해주는 메소드만들기
+  Q. 어떻게 코드를 짜면 될까요? 
+
+  var exObject = { 
+    data : [1,2,3,4,5] 
+  }
+  exObject.total();
+  
+  위처럼 exObject.total()라고 쓰면 exObject.data 안에 있는 모든 숫자를 더해서 콘솔창에 출력해주어야합니다. 
+  조건) 위에있는 exObject라는 object 중괄호 {} 내에 코드 작성 금지 
+  */
+  var exObject = { 
+    data : [1,2,3,4,5]
+  }
+
+  // 이 문제도 this를 사용할 게 아니라면, 화살표 함수 사용 X
+  exObject.total = function() {
+    var sum = this.data.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+    console.log(sum, '확인');
+  };
+  
+  // 더 간단한 버전
+  // exObject.total = function() {
+  //   var sum = 0;
+  //   this.data.forEach((e) => {
+  //     sum += e;
+  //   })
+  //   console.log(sum, '간단 버전 확인');
+  // };
+  
+  // 화살표 함수 사용 시, 아래처럼 사용 가능
+  // exObject.total = () => {
+  //   var sum = exObject.data.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+  //   console.log(sum, '확인');
+  // };
+
+  exObject.total();
+  /*
+  보통은 오브젝트 내에 미리 생성된 메서드를 사용하다 보니,
+  오브젝트 바깥에서 함수를 생성하여 추가(?)하는 방식은 처음 했던 것 같다.
+  
+  방법에 대해서 생각해보느라 30분정도 시간을 쓴 듯.
+  안 까먹을 것 같다.
+  */
+
+
+
+  /*
+  연습 문제 03 - setTimeout 이용해보기
+  Q. 그럼 setTimeout을 이용해서 1초 후에 this.innerHTML을 콘솔창에 출력하고 싶으면 어떻게 코드를 수정해야할까요?
+  버튼을 클릭하면 지금 누른 버튼에 담긴 글자를 출력하는 기능을 만들고 싶다.
+  1초 후에 '버튼이에요'라는 글자가 콘솔창에 등장하면 성공입니다. 
+
+  <button type="button" id="arrow">버튼입니다</button>
+
+  document.getElementById('arrow').addEventListener('click', function(){
+    console.log(this.innerHTML)
+  });
+  */
+  document.getElementById('arrow').addEventListener('click', function(){
+    setTimeout(() => {
+      console.log(this.innerHTML)
+    }, 1000)  
+  })
+  // 쉽다.
+
+
+</script>
+</html>

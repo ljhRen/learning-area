@@ -21,8 +21,6 @@ body, body > * {
   margin-top: 8px;
 }
 
-/* .container ol > li > ul li{ d} */
-
 .container .learning {
   margin-top: 40px;
 }
@@ -34,4 +32,5 @@ body, body > * {
 .container .history-back {
   display: block;
   margin-top: 80px;
+  width: max-content;
 }

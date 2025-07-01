@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Template & tagged literals | JS</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <div class="sub-area">
+    <div class="container">
+      <h2>Template & tagged literals 개념 복습</h2>
+      <p>코드 내, 주석/콘솔 확인</p>
+      <ol>
+        <li>
+          template & tagged literals에 대한 복습
+          <ul>
+            <li>
+              template literals은 백틱을 사용. <br>
+              문자열 내 엔터키 사용 가능. <br>
+              변수 사용 시, 편리하다.('+' 사용 안 해도 됨. 개인적으로 극호) <br>
+              js 내, html 사용 시에도 편리하다.
+            </li>
+            <li>
+              tagged literals은 함수로 문자 해체분석기능 사용 가능. <br>
+              근데 실무에서 함수에 어떤 텍스트 값을 넣어 위 설명처럼 핸들링한 경험은 따로 없었다.
+            </li>
+          </ul>
+        </li>
+      </ol>
+      <p class="think">
+        개인적으로 가장 좋아하는 부분인 템플릿 리터럴. <br>
+        클라이언트 단에 데이터를 바인딩 할 때 가장 많이 썼고, 처음 접했을 때 진짜 신기했었던 기억이 있다. <br>
+        1년차 부터 사용할 일이 꽤 많았어서, 현재 jQuery를 사용 시 선언을 jQuery('.foo') 같은 형태로 사용하게된 계기이기도 하다. <br>
+        프론트엔드 개발자와 협업할 때 데이터 바인딩 시 ${foo}와 같이 하다보니, 우선 순위가 높은 데이터를 편리하게 사용하려고 jQuery 선언을 위와 같이 했었다.
+      </p>
+
+      <div class="learning variable">
+        <h3>예제 테스트</h3>
+      </div>
+
+      <a class="history-back" href="../index.html">ES6 메인 리스트로</a>
+    </div>  
+  </div>
+</body>
+<script type="text/javascript">
+  /* *** 리터럴 예시 ***  */
+  var 변수 = '손흥민';
+  var 문자 = `안녕하세요 ${변수} 입니다`;
+
+  function 해체분석기(문자들, 변수들) {
+    console.log(`${문자들[1]} ${변수들} ${문자들[0]}`);
+  }
+
+  해체분석기`안녕하세요 ${변수} 입니다`;
+
+
+  /* *** 리터럴 연습문제 ***  */
+
+</script>
+</html>
